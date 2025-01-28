@@ -1,4 +1,4 @@
-#include "../incl/minishell.c"
+#include "../incl/minishell.h"
 
 /* Conecta un nodo de token eliminado con un nodo insertado,
  ajustando los extremos. */

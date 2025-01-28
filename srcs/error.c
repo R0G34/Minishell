@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../incl/minishell.h"
 
 /* join_strs:
  * Une dos cadenas en una sola, liberando la memoria de la primera.

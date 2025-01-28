@@ -15,7 +15,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# include "libft.h"
+# include "../libft/libft.h"
 
 # define PROMPT "\001\e[45m\002>>> \001\e[0m\e[33m\002 Minishell>$ \001\e[0m\002"
 # define HEREDOC_NAME "/tmp/.minishell_heredoc_"
@@ -197,17 +197,7 @@ bool		restore_io(t_io_fds *io);
 bool		get_heredoc(t_data *data, t_io_fds *io);
 void		print_cmd_list(t_data *data);
 void		print_token_list(t_token **tokens);
-char		*ft_strdup(const char *s1);
-char		*ft_strjoin(char const *s1, char const *s2);
+int			ft_strcmp(const char *s1, const char *s2);
+char		*ft_strtrim(char const *s1, char const *set);
 int			ft_isspace(int c);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-void		ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd);
-void		ft_putendl_fd(char *s, int fd);
-int			ft_isdigit(int c);
-char		*ft_strchr(const char *str, int c);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-size_t		ft_strlen(const char *str);
-void		*ft_calloc(size_t count, size_t size);
-int			ft_isalpha(int c);
 #endif

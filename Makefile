@@ -30,7 +30,7 @@ SRC		= 	main.c \
 			echo_args_utils.c \
 			command_args.c \
 			input_redirection.c \
-			truncate_redirections.c \
+			truncate_redirection.c \
 			append_redirections.c \
 			heredoc_handler.c \
 			heredoc_utils.c \
@@ -54,13 +54,18 @@ SRC		= 	main.c \
 			error.c \
 			frees.c \
 			signal_handler.c \
-			debug_tools.c
+			debug_tools.c \
+			ft_strtrim.c \
+			utils.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
-INC		= -I $(INC_PATH)
+INC		= -I $(INC_PATH) -I $(LIBFT_PATH)
 
-all: $(OBJ_PATH) $(NAME)
+LIBFT_PATH = ./libft/
+LIBFT = ./libft/libft.a
+
+all: $(OBJ_PATH) $(LIBFT) $(NAME)
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
@@ -70,15 +75,18 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) -l readline
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) -l readline
+
+$(LIBFT):
+	make -C $(LIBFT_PATH)
 
 clean:
 	rm -rf $(OBJ_PATH)
-	make -C clean
+	make -C $(LIBFT_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C fclean
+	make -C $(LIBFT_PATH) fclean
 
 re: fclean all
 
